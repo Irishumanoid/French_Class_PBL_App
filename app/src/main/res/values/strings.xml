@@ -12,4 +12,7 @@
     <string name="leaderboard">Leaderboard</string>
     <string name="user_information">User information</string>
     <string name="im_url_here">Insert profile picture URL below</string>
+    <string name="concept_name">Concept name</string>
+    <string name="concept_summary">Concept summary</string>
+    <string name="learn">Learn</string>
 </resources>

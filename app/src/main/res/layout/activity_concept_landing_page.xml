@@ -6,8 +6,15 @@
     android:layout_height="match_parent"
     tools:context=".Readings.ConceptLandingPage">
 
+   <TextView
+       android:id="@+id/readings_identifier"
+       android:layout_width="match_parent"
+       android:layout_height="match_parent" />
+
    <androidx.recyclerview.widget.RecyclerView
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"/>
+       android:id="@+id/concepts_recycler_view"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_alignBottom="@+id/readings_identifier"/>
 
 </RelativeLayout>
