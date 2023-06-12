@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">DuoFrenchoLingo</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="login_prompt">Click to login</string>
+    <string name="click_to_login">Click to login</string>
+    <string name="click_to_register">Click to register\n</string>
+    <string name="logout">Logout</string>
+    <string name="readings">Grammar Tutorials</string>
+    <string name="lessons">Lessons</string>
+    <string name="quizzes">Quizzes</string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="user_information">User information</string>
+    <string name="im_url_here">Insert profile picture URL below</string>
+</resources>

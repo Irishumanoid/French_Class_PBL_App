@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "57529174136",
+    "project_id": "french-app-registration",
+    "storage_bucket": "french-app-registration.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57529174136:android:b7e7a196fb7edb0af3058d",
+        "android_client_info": {
+          "package_name": "com.example.duofrancaisolingo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57529174136-3aqib6rf6blrdo8jl0mcrt5s8lgn5e2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxdKnBv59gkf0pB_FFShfC-JNwgVpBnUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57529174136-3aqib6rf6blrdo8jl0mcrt5s8lgn5e2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57529174136:android:b806696a49de7450f3058d",
+        "android_client_info": {
+          "package_name": "com.example.duofrencholingo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57529174136-3aqib6rf6blrdo8jl0mcrt5s8lgn5e2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxdKnBv59gkf0pB_FFShfC-JNwgVpBnUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57529174136-3aqib6rf6blrdo8jl0mcrt5s8lgn5e2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:57529174136:android:24a05983823fea1cf3058d",
+        "android_client_info": {
+          "package_name": "com.example.frenchapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "57529174136-3aqib6rf6blrdo8jl0mcrt5s8lgn5e2v.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxdKnBv59gkf0pB_FFShfC-JNwgVpBnUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "57529174136-3aqib6rf6blrdo8jl0mcrt5s8lgn5e2v.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
