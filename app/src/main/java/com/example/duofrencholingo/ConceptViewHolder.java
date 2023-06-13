@@ -20,5 +20,6 @@ public class ConceptViewHolder extends RecyclerView.ViewHolder {
         nameView = itemView.findViewById(R.id.name);
         summaryView = itemView.findViewById(R.id.summary);
         contentButton = itemView.findViewById(R.id.go_learn_content);
+
     }
 }

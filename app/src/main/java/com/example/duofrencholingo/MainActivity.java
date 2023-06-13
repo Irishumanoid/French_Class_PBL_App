@@ -93,7 +93,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                if (String.valueOf(profileImageUrl.getText()).contains("jpg")) {
+                if (String.valueOf(profileImageUrl.getText()).contains("jpg") ||
+                        String.valueOf(profileImageUrl.getText()).contains("png")) {
                     exit = true;
                     profileImagePrompt.setVisibility(View.GONE);
                     ImageStore.loadIntroImageWithGlide(profileImage, String.valueOf(profileImageUrl.getText()));
