@@ -1,98 +1,76 @@
 package com.example.duofrencholingo.User;
 
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.xml.transform.stream.StreamSource;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class AccessUserData {
     private final FirebaseDatabase userData;
     private DatabaseReference dataRef;
-    private Map<String, User> users;
 
     public AccessUserData() {
         this.userData = FirebaseDatabase.getInstance();
-        dataRef = userData.getReference("french-app-registration/users");
-        users = new HashMap<>();
+        dataRef = userData.getReference("french-app-registration/users").push();
     }
 
-    public void setUserInfo(String email, String username, int age) {
-        users.put(username, new User(email, username, age));
-        dataRef.setValue(users);
-
-        dataRef.setValue("writing data", new DatabaseReference.CompletionListener() {
+    public void trackUserChanges() {
+        dataRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
-                if (error != null) {
-                    System.out.println("Data could not be saved; error: " + error.getMessage());
-                } else {
-                    System.out.println("Data successfully saved");
-                }
+            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                User newUser = snapshot.getValue(User.class);
+                System.out.println("new user registered: " + newUser);
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+                System.out.printf("Information changed for %s", snapshot.getValue(User.class).getUsername());
+            }
+
+            @Override
+            public void onChildRemoved(@NonNull DataSnapshot snapshot) {
+                System.out.println("The user " + snapshot.getValue(User.class) + " has unregistered");
+            }
+
+            @Override
+            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
     }
 
+    public DatabaseReference getUserRef(String key) {
+        Query query = dataRef.orderByKey().equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                User curUser = snapshot.getValue(User.class);
+                System.out.printf("current user %s has %s points", curUser.getUsername(), String.valueOf(curUser.getXP()));
+            }
 
-    private static class User {
-        private String email;
-        private String username;
-        private int age;
-        private double XP;
-        private List<String> completedLessons;
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                System.out.println("Data could not be returned due to: " + error.getMessage());
+            }
+        });
 
-        public User(String email, String username, int age) {
-            this.email = email;
-            this.username = username;
-            this.age = age;
-            this.XP = 0;
-            this.completedLessons = new ArrayList<>();
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getUsername() {
-            return username;
-        }
-
-        public void setUsername(String username) {
-            this.username = username;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
-
-        public double getXP() {
-            return XP;
-        }
-
-        public void addXP(double increment) {
-            this.XP += increment;
-        }
-
-        public List<String> getCompletedLessons() {
-            return completedLessons;
-        }
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users/"+key).child(uid);
+        return userRef;
     }
 
 }
