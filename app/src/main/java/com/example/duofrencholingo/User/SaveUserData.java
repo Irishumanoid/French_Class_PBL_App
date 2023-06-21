@@ -3,6 +3,7 @@ package com.example.duofrencholingo.User;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -14,12 +15,10 @@ public class SaveUserData {
     private final FirebaseDatabase userData;
     private DatabaseReference dataRef;
     private Map<String, User> users;
-    private User curUser;
 
-    public SaveUserData(User curUser) {
-        this.curUser = curUser;
+    public SaveUserData() {
         this.userData = FirebaseDatabase.getInstance();
-        dataRef = userData.getReference("french-app-registration/users/"+curUser).push();
+        dataRef = userData.getReference("french-app-registration/users/").push();
         users = new HashMap<>();
     }
 
@@ -38,8 +37,9 @@ public class SaveUserData {
     }
 
     public void updateXP(User user, double increment) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         user.addXP(increment);
-        dataRef.child(user +"/XP").setValue(user.getXP(), new DatabaseReference.CompletionListener() {
+        dataRef.child(uid +"/XP").setValue(user.getXP(), new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error != null) {
@@ -52,8 +52,9 @@ public class SaveUserData {
     }
 
     public void updateLessons(User user, String lesson) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         user.getCompletedLessons().add(lesson);
-        dataRef.child(user+"/lessons").setValue(user.getCompletedLessons(), new DatabaseReference.CompletionListener() {
+        dataRef.child(uid+"/lessons").setValue(user.getCompletedLessons(), new DatabaseReference.CompletionListener() {
             @Override
             public void onComplete(@Nullable DatabaseError error, @NonNull DatabaseReference ref) {
                 if (error != null) {

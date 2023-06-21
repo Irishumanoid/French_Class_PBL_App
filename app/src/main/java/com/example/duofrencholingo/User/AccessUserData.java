@@ -53,8 +53,9 @@ public class AccessUserData {
         });
     }
 
-    public DatabaseReference getUserRef(String key) {
-        Query query = dataRef.orderByKey().equalTo(FirebaseAuth.getInstance().getCurrentUser().getUid());
+    public String getDataFromRef(String key) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        Query query = dataRef.child(uid).orderByKey();
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -67,10 +68,7 @@ public class AccessUserData {
                 System.out.println("Data could not be returned due to: " + error.getMessage());
             }
         });
-
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference().child("users/"+key).child(uid);
-        return userRef;
+        return query.get().toString();
     }
 
 }
